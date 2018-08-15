@@ -16,22 +16,21 @@ public class ElevatorThread implements Runnable {
 
     public ElevatorThread(House house) {
         this.house = house;
-        this.elevatorController = new ElevatorController();
+        elevatorController = new ElevatorController();
     }
 
     @Override
     public void run() {
-        ApplicationLogger.logger.info("Lift started ");
+        ApplicationLogger.logger.info("Lift started");
         Validator validator = new Validator();
         while (!validator.isValid(house)) {
             try {
-                askCabinPasengersToExit();
+                askCabinPassengersToExit();
                 Thread.sleep(200);
                 askStorePassengersToEnter();
                 Thread.sleep(200);
                 moveOnNextFloor();
                 showCabinAndNextFloorInfo();
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,20 +40,19 @@ public class ElevatorThread implements Runnable {
             ApplicationLogger.logger.info("Transportation finished correctly ");
             validator.showFinalHouse(house);
         } else {
-            ApplicationLogger.logger.info("isAllDispatcherContainersEmpty "
+            ApplicationLogger.logger.info("isAllDispatcherContainersEmpty"
                     + validator.isAllDispatcherContainersEmpty(house));
-            ApplicationLogger.logger.info("isElevatorCabineEmpty "
+            ApplicationLogger.logger.info("isElevatorCabinEmpty "
                     + validator.isElevatorCabineEmpty(house));
             ApplicationLogger.logger.info("isAllPassengersInCompleteState"
                     + validator.isAllPassengersInCompleteState(house));
-            ApplicationLogger.logger.info("isAllPassengersOnProperStore;"
+            ApplicationLogger.logger.info("isAllPassengersOnProperStore"
                     + validator.isAllPassengersOnProperStore(house));
-
         }
 
     }
 
-    private void askCabinPasengersToExit() {
+    private void askCabinPassengersToExit() {
         ElevatorContainer container = house.getElevatorContainer();
         ApplicationLogger.logger.info("Lift is on " + container.getCurrentStore() + " store, passengers can EXIT");
         if (container.getPassengers().size() == 0) return;
@@ -75,13 +73,12 @@ public class ElevatorThread implements Runnable {
             int times = 0;
             while (times++ < determineNumberOfPassengersToEnterCabin()) {
                 if (elevatorController.isPossibleToEntryCabine(container)
-                        && !store.isAllPassengersFromStoreEnterCabin(house)) {// and pass store n dipatcer
-                    System.out.println(" in notify lift to enter");
+                        && !store.isAllPassengersFromStoreEnterCabin(house)) {
+                    System.out.println("in notify lift to enter");
                     o.notify();
                 }
             }
         }
-
     }
 
     private void moveOnNextFloor() {
@@ -89,13 +86,13 @@ public class ElevatorThread implements Runnable {
     }
 
     private void showCabinAndNextFloorInfo() {
-        ApplicationLogger.logger.info(" Information for next Store : ");
+        ApplicationLogger.logger.info("Information for next Store : ");
         house.getElevatorContainer().showCabin();
-        int floor = house.getElevatorContainer().getCurrentStore();
-        ArrivalContainer a = house.getArrivalContainerByNumberOfStore(floor);
-        DispatchContainer d = house.getDispatchContainerByNumberOfStore(floor);
-        a.showArrivalContainer();
-        d.showDispatchContainer();
+        int store = house.getElevatorContainer().getCurrentStore();
+        ArrivalContainer arrivalContainer = house.getArrivalContainerByNumberOfStore(store);
+        arrivalContainer.showArrivalContainer();
+        DispatchContainer dispatchContainer = house.getDispatchContainerByNumberOfStore(store);
+        dispatchContainer.showDispatchContainer();
     }
 
     private int determineNumberOfPassengersToEnterCabin() {

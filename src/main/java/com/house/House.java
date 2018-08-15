@@ -47,18 +47,21 @@ public class House {
         elevatorCapacity = Integer.parseInt(property.getProperty("elevatorCapacity"));
         passengersNumber = Integer.parseInt(property.getProperty("passengersNumber"));
     }
+
     private void createPassengerList() {
         int passengerCount = 1;
         for (int i = 0; i < passengersNumber; i++) {
             passengers.add(new Passenger(passengerCount++));
         }
     }
+
     private void createStores() {
         int storeCount = 1;
         for (int i = 0; i < storesNumber; i++) {
             stores.add(new Store(storeCount++));
         }
     }
+
     private void distributePassengersOnFlores() {
         for (Passenger p : passengers) {
             p.setDispatchStoreNumber(getRandomStore());
@@ -67,9 +70,11 @@ public class House {
             p.setDispatureContainerForPassengerState(this);
         }
     }
+
     private int getRandomStore() {
         return (int) (1 + (Math.random() * storesNumber));
     }
+
     private void setRandomArrivalFloorNumber(Passenger p) {
         int randomStore = getRandomStore();
         while (randomStore == p.getDispatchStoreNumber()) {
@@ -77,6 +82,7 @@ public class House {
         }
         p.setArrivalStoreNumber(randomStore);
     }
+
     private void showCreatedHouse() {
         String s = "House has: " + storesNumber + " stores and " + passengersNumber + " passengers";
         ApplicationLogger.logger.info(s);
@@ -87,6 +93,7 @@ public class House {
             ApplicationLogger.logger.info(stores.get(i).toString());
         }
     }
+
     private void populateDispatcherContainersOnFloors() {
         for (Passenger p : passengers) {
             int passengerDispatcherStore = p.getDispatchStoreNumber();

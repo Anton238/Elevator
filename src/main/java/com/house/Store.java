@@ -33,14 +33,15 @@ public class Store {
         return arrivalContainer;
     }
 
-    public boolean isAllPassengersFromStoreEnterCabin(House house){
+    public boolean isAllPassengersFromStoreEnterCabin(House house) {
         int currentStore = house.getElevatorContainer().getCurrentStore();
         DispatchContainer dispatcherContainer = house.getDispatchContainerByNumberOfStore(currentStore);
-        if(dispatcherContainer.getPassengers().size() == 0)
+        if (dispatcherContainer.getPassengers().size() == 0)
             return true;
-        for(Passenger p : dispatcherContainer.getPassengers()){
-            if(p.getDispatchStoreNumber() == currentStore
-                    && !(p.getPassengerStatePosition().getContainer() instanceof ElevatorContainer)){
+        for (Passenger p : dispatcherContainer.getPassengers()) {
+            if (p.getDispatchStoreNumber() == currentStore
+                    &&
+                    !(p.getPassengerStatePosition().getContainer() instanceof ElevatorContainer)) {
                 return false;
             }
         }

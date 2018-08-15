@@ -26,6 +26,7 @@ public class Passenger {
     public int getDispatchStoreNumber() {
         return dispatchStoreNumber;
     }
+
     public void setDispatchStoreNumber(int dispatchStoreNumber) {
         this.dispatchStoreNumber = dispatchStoreNumber;
     }
@@ -33,6 +34,7 @@ public class Passenger {
     public int getArrivalStoreNumber() {
         return arrivalStoreNumber;
     }
+
     public void setArrivalStoreNumber(int arrivalStoreNumber) {
         this.arrivalStoreNumber = arrivalStoreNumber;
     }
@@ -40,11 +42,12 @@ public class Passenger {
     public PassengerStatePosition getPassengerStatePosition() {
         return passengerStatePosition;
     }
+
     public void setPassengerStatePosition(PassengerStatePosition passengerStatePosition) {
         this.passengerStatePosition = passengerStatePosition;
     }
 
-    public void setDispatureContainerForPassengerState(House h){
+    public void setDispatureContainerForPassengerState(House h) {
         DispatchContainer d = h.getDispatchContainerByNumberOfStore(getDispatchStoreNumber());
         getPassengerStatePosition().setContainer(d);
     }
@@ -60,7 +63,7 @@ public class Passenger {
     @Override
     public String toString() {
         return "Passenger{" +
-                "id=" + id +"; direction " + direction +
+                "id=" + id + "; direction " + direction +
                 "; " + passengerStatePosition.toString() + //Output: ... PassengerStatePosition{...} ...
                 "; dispatcherStoreNumber=" + dispatchStoreNumber +
                 "; arrivalStoreNumber=" + arrivalStoreNumber +

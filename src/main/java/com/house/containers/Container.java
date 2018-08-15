@@ -27,7 +27,7 @@ public class Container {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Container has ");
+        sb.append("Container has: ");
         for (Passenger p : containerPassengers) {
             sb.append(p.toString()).append("\n");
         }

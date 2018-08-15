@@ -6,7 +6,7 @@ import org.junit.Test;
 public class MovingLiftTest {
 
     @Test
-    public void moveListTest(){
+    public void moveLiftTest(){
         ElevatorContainer container = new ElevatorContainer(5);
         container.setCurrentStore(1);
         ElevatorController controller = new ElevatorController();

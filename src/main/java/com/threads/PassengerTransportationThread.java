@@ -58,8 +58,8 @@ public class PassengerTransportationThread extends Thread {
 
         return !(house.getElevatorContainer().hasFreePlacesInCabin() &&
                 house.getElevatorContainer().getCurrentStore() == p.getDispatchStoreNumber()
-                && isPassengerElevatorContainerEqualDirection()
-        );
+                && isPassengerElevatorContainerEqualDirection());
+
     }
 
     private boolean isPassengerElevatorContainerEqualDirection() {
@@ -77,8 +77,7 @@ public class PassengerTransportationThread extends Thread {
         ApplicationLogger.logger.info("Passenger{id=" + passenger.getId() + "} in waitInElevatorContainer");
         Object o = house.getElevatorContainer().getSynchronizedCabin();
         synchronized (o) {
-            while (passenger.getArrivalStoreNumber() != house.getElevatorContainer().getCurrentStore())//
-            {
+            while (passenger.getArrivalStoreNumber() != house.getElevatorContainer().getCurrentStore()) {
                 try {
                     ApplicationLogger.logger.info("Passenger{id=" + passenger.getId() + "} in waitInElevatorContainer while "
                             + this.getState());
