@@ -6,9 +6,12 @@ import com.logger.ApplicationLogger;
 public class DispatchContainer extends Container {
     public void showDispatchContainer() {
         ApplicationLogger.logger.info("DispatchContainer has: ");
-        for (Passenger p : containerPassengers) {
-            ApplicationLogger.logger.info(p.toString());
-        }
+        if (containerPassengers.size() == 0)
+            ApplicationLogger.logger.info(" 0 Passengers");
+        else
+            for (Passenger p : containerPassengers)
+                ApplicationLogger.logger.info(p.toString());
+
     }
 
     @Override

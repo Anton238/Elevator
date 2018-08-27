@@ -28,9 +28,12 @@ public class Container {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Container has: ");
-        for (Passenger p : containerPassengers) {
-            sb.append(p.toString()).append("\n");
-        }
+        if (containerPassengers.size() == 0)
+            sb.append(" 0 Passengers");
+        else
+            for (Passenger p : containerPassengers)
+                sb.append(p.toString()).append("\n");
+
         return sb.toString();
     }
 }

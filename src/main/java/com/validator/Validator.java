@@ -45,9 +45,8 @@ public class Validator {
     public boolean isAllPassengersOnProperStore(House house) {
         for (int i = 1; i <= house.getStoresNumber(); i++) {
             ArrivalContainer a = house.getArrivalContainerByNumberOfStore(i);
-            for (Passenger p : a.getPassengers()) {
+            for (Passenger p : a.getPassengers())
                 if (p.getArrivalStoreNumber() != i) return false;
-            }
         }
         return true;
     }
@@ -62,7 +61,7 @@ public class Validator {
     }
 
     public void showFinalHouse(House house) {
-        System.out.println("Passengers Final: ");
+        System.out.println("\n\nPassengers Final: ");
         for (Passenger p : house.getPassengers()) {
             System.out.println(p.toString());
         }

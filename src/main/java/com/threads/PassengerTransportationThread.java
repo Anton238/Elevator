@@ -47,19 +47,17 @@ public class PassengerTransportationThread extends Thread {
                     PassengerState.IN_PROGRESS));
             ApplicationLogger.logger.info("Passenger{id=" + passenger.getId() + "} moved TO cabin");
         }
-
     }
 
 
     private boolean needToWaitOnFloor(House house, Passenger p) {
-        ApplicationLogger.logger.info("Passenger{id=" + p.getId() + "} is " + p.getPassengerDirection() + ", elevator =" +
+        ApplicationLogger.logger.info("Passenger{id=" + p.getId() + "} is " + p.getPassengerDirection() + ", elevator = " +
                 house.getElevatorContainer().getElevatorDirection());
         ApplicationLogger.logger.info("Free cabin: " + house.getElevatorContainer().hasFreePlacesInCabin());
 
         return !(house.getElevatorContainer().hasFreePlacesInCabin() &&
                 house.getElevatorContainer().getCurrentStore() == p.getDispatchStoreNumber()
                 && isPassengerElevatorContainerEqualDirection());
-
     }
 
     private boolean isPassengerElevatorContainerEqualDirection() {
@@ -80,10 +78,10 @@ public class PassengerTransportationThread extends Thread {
             while (passenger.getArrivalStoreNumber() != house.getElevatorContainer().getCurrentStore()) {
                 try {
                     ApplicationLogger.logger.info("Passenger{id=" + passenger.getId() + "} in waitInElevatorContainer while "
-                            + this.getState());
+                            + getState());
                     o.wait();
                     ApplicationLogger.logger.info("Passenger{id=" + passenger.getId() + "} in waitInElevatorContainer while "
-                            + this.getState());
+                            + getState());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

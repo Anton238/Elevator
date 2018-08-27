@@ -50,10 +50,12 @@ public class ElevatorContainer extends Container {
     }
 
     public void showCabin() {
-        ApplicationLogger.logger.info("Cabin has ");
-        for (Passenger p : containerPassengers) {
-            ApplicationLogger.logger.info(p.toString());
-        }
+        ApplicationLogger.logger.info("Cabin has: ");
+        if (containerPassengers.size() == 0)
+            ApplicationLogger.logger.info(" 0 Passengers");
+        else
+            for (Passenger p : containerPassengers)
+                ApplicationLogger.logger.info(p.toString());
     }
 
     public void changeDirection() {

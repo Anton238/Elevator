@@ -86,7 +86,7 @@ public class ElevatorThread implements Runnable {
     }
 
     private void showCabinAndNextFloorInfo() {
-        ApplicationLogger.logger.info("Information for next Store : ");
+        ApplicationLogger.logger.info("Information for next Store: ");
         house.getElevatorContainer().showCabin();
         int store = house.getElevatorContainer().getCurrentStore();
         ArrivalContainer arrivalContainer = house.getArrivalContainerByNumberOfStore(store);
