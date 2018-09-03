@@ -29,4 +29,4 @@ Actions performed in cycle till the moment when will be true all following condi
 
 
 
-**Actions for starting, moving elevator, boarding and deboarding passengers should be logged with log4j.**
+**Actions for starting, moving elevator, boarding and deboarding passengers are logged with log4j.**
